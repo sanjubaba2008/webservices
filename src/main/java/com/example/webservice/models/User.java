@@ -2,7 +2,10 @@ package com.example.webservice.models;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +16,8 @@ import javax.persistence.Id;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Component
+@Slf4j
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,4 +28,9 @@ public class User {
 
     @NonNull
     String email;
+
+    @PostConstruct
+    public void construct(){
+        log.trace("hello world");
+    }
 }
